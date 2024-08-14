@@ -1,0 +1,30 @@
+{
+  "name": "moderate-jokes-microservice",
+  "version": "1.0.0",
+  "description": "Moderate jokes microservice",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SachiniAmarasinghe97/Moderate-Jokes-Microservice.git"
+  },
+  "author": "Sachini Amarasinghe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SachiniAmarasinghe97/Moderate-Jokes-Microservice/issues"
+  },
+  "homepage": "https://github.com/SachiniAmarasinghe97/Moderate-Jokes-Microservice#readme",
+  "dependencies": {
+    "axios": "^1.7.4",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
