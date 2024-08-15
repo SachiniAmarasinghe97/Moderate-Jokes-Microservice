@@ -1,21 +1,25 @@
-export const authenticateModerator = (req, res, next) => {
+import jwt from 'jsonwebtoken';
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const secretKey = process.env.JWT_SECRET;
+
+
+export const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
 
     if (!authHeader) {
-        return res.status(401).json({ message: 'Missing authorization header' });
+        return res.status(401).json({ message: 'Authorization header missing' });
     }
 
-    const base64Credentials = authHeader.split(' ')[1];
-    const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
-    const [email, password] = credentials.split(':');
+    const token = authHeader.split(' ')[1];  // Get the token from the header
 
-    // Default credentials
-    const defaultEmail = 'admin@admin.com';
-    const defaultPassword = 'admin123';
-
-    if (email === defaultEmail && password === defaultPassword) {
+    jwt.verify(token, secretKey, (err, user) => {
+        if (err) {
+            return res.status(403).json({ message: 'Invalid or expired token' });
+        }
+        req.user = user;
         next();
-    } else {
-        return res.status(401).json({ message: 'Invalid credentials' });
-    }
+    });
 };
