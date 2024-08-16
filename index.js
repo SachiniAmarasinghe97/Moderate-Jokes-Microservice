@@ -3,9 +3,11 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import route from "./routes/moderateRoute.js";
 import authRoute from './routes/auth.js';
+import cors from "cors"
 
 dotenv.config();
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 5002;
